@@ -24,6 +24,9 @@ module.exports = {
   },
   externals: {
     react: "React",
-    "react-dom": "ReactDOM"
+    "react-dom": "ReactDOM",
+    "@material-ui/core": "MaterialUI",
+    "@material-ui/core/styles": "MaterialUI",
+    "@material-ui/core/colors": "MaterialUI"
   }
 };
