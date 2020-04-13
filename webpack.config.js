@@ -23,6 +23,9 @@ module.exports = {
     ]
   },
   externals: {
+    "Config": JSON.stringify({
+      "apiBaseUrl": "http://192.168.0.21/home-monitoring/api"
+    }),
     react: "React",
     "react-dom": "ReactDOM",
     "@material-ui/core": "MaterialUI",
