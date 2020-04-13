@@ -30,7 +30,7 @@ export default class Api {
   }
 
   static fetchLatestReading(locationName: string, readingType: string): Promise<SensorReading> {
-    return fetch(BASE_URL + "/location/" + locationName + "/types/" + readingType)
+    return fetch(BASE_URL + "/location/" + locationName + "/type/" + readingType + "/reading")
       .then(response => response.json())
   }
 }

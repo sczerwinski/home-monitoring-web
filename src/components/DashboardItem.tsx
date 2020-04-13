@@ -4,6 +4,7 @@ import { Paper, Box, Grid } from '@material-ui/core';
 
 import Api, { Location } from './Api';
 import DashboardItemHeader from './DashboardItemHeader';
+import CurrentReadings from './CurrentReadings';
 
 type DashboardItemProps = {
   location: Location
@@ -25,6 +26,7 @@ export default class DashboardItem extends React.Component<DashboardItemProps> {
                 <DashboardItemHeader location={this.props.location} />
               </Grid>
               <Grid item>
+                <CurrentReadings location={this.props.location} />
               </Grid>
             </Grid>
             <Grid item lg={10} md={8} xs={12}>
