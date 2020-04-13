@@ -37,5 +37,6 @@ export default class Api {
 
 export {
   Location,
+  SensorType,
   SensorReading
 }

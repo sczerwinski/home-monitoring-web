@@ -86,9 +86,9 @@ export default class Dashboard extends React.Component<{}, DashboardState> {
 
   private renderItems(locations: Location[]) {
     return (
-      <Grid container direction="column" alignItems="stretch">
+      <Grid container>
         {locations.map(location => (
-          <Grid item key={location.id}>
+          <Grid xs={12} item key={location.id}>
             <DashboardItem location={location} />
           </Grid>
         ))}
