@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Box, Container } from '@material-ui/core';
+import { Toolbar, Box, Container } from '@material-ui/core';
 
 import TopBar from './TopBar';
 
@@ -10,6 +10,7 @@ export default class PageLayout extends React.Component {
     return (
       <React.Fragment>
         <TopBar />
+        <Toolbar />
         <Box my={2}>
           <Container maxWidth="xl">
             {this.props.children}

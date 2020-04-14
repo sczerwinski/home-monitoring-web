@@ -6,9 +6,9 @@ export default class TopBar extends React.Component {
 
   render() {
     return (
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Toolbar>
-          <Typography variant="h6">
+          <Typography variant="h6" noWrap>
             Home Monitoring
           </Typography>
         </Toolbar>
