@@ -102,17 +102,11 @@ export default class Chart extends React.Component<ChartProps, ChartState> {
   renderContent(readings: Map<SensorType, SensorReading[]>) {
     let data = this.averageEachTenMinutes(this.convertData(readings))
     return (
-      <Box height="400px">
-      <ResponsiveContainer>
+      <ResponsiveContainer width="100%" height={400}>
         <LineChart
             data={data}
             syncId="syncCharts"
-            margin={{
-              top: 8,
-              right: 16,
-              bottom: 8,
-              left: 16,
-            }}>
+            margin={{top: 0, right: 2, bottom: 0, left: 2}}>
           <CartesianGrid strokeDasharray="4 4" />
           <XAxis
             dataKey="time"
@@ -122,7 +116,7 @@ export default class Chart extends React.Component<ChartProps, ChartState> {
               domain={[dataMin => (Math.floor(dataMin)), dataMax => (Math.ceil(dataMax))]}>
             <Label
                 angle={270}
-                position="left"
+                position="insideLeft"
                 style={{ textAnchor: 'middle' }}>
               Temperature (&deg;C)
             </Label>
@@ -133,7 +127,7 @@ export default class Chart extends React.Component<ChartProps, ChartState> {
               domain={[dataMin => (Math.floor(dataMin)), dataMax => (Math.ceil(dataMax))]}>
             <Label
                 angle={90}
-                position="right"
+                position="insideRight"
                 style={{ textAnchor: 'middle' }}>
               Humidity (%)
             </Label>
@@ -158,7 +152,6 @@ export default class Chart extends React.Component<ChartProps, ChartState> {
           <Tooltip />
         </LineChart>
       </ResponsiveContainer>
-      </Box>
     );
   }
 
