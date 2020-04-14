@@ -13,7 +13,7 @@ enum SensorType {
 }
 
 type SensorReading = {
-  dateTime: Date,
+  dateTime: string,
   value: number
 }
 
@@ -31,6 +31,12 @@ export default class Api {
 
   static fetchLatestReading(locationName: string, readingType: string): Promise<SensorReading> {
     return fetch(BASE_URL + "/location/" + locationName + "/type/" + readingType + "/reading")
+      .then(response => response.json())
+  }
+
+  static fetchReadings(locationName: string, readingType: string, date: Date): Promise<SensorReading[]> {
+    let formattedDate = date.toISOString().split('T')[0];
+    return fetch(BASE_URL + "/location/" + locationName + "/type/" + readingType + "/readings/" + formattedDate)
       .then(response => response.json())
   }
 }
