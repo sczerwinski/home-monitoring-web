@@ -18,8 +18,10 @@
   },
   "homepage": "https://github.com/sczerwinski/home-monitoring-web",
   "devDependencies": {
+    "@types/node": "^13.11.1",
     "@types/react": "^16.9.34",
     "@types/react-dom": "^16.9.6",
+    "@types/recharts": "^1.8.9",
     "source-map-loader": "^0.2.4",
     "ts-loader": "^6.2.2",
     "typescript": "^3.8.3",
@@ -29,7 +31,9 @@
   "dependencies": {
     "@material-ui/core": "^4.9.10",
     "@material-ui/icons": "^4.9.1",
+    "prop-types": "^15.7.2",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "recharts": "^1.8.5"
   }
 }

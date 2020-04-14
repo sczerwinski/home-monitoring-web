@@ -28,6 +28,7 @@ module.exports = {
     }),
     react: "React",
     "react-dom": "ReactDOM",
+    "recharts": "Recharts",
     "@material-ui/core": "MaterialUI",
     "@material-ui/core/styles": "MaterialUI",
     "@material-ui/core/colors": "MaterialUI"
