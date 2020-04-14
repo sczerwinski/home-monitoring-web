@@ -5,6 +5,8 @@ import { Grid, Typography } from '@material-ui/core';
 import Api, { Location, SensorType, SensorReading } from './Api';
 import LoadingProgress from './LoadingProgress'
 
+const RELOAD_INTERVAL = 10000
+
 type CurrentReadingsProps = {
   location: Location
 }
@@ -30,7 +32,7 @@ export default class CurrentReadings extends React.Component<CurrentReadingsProp
 
   componentDidMount() {
     this.fetchSensorReadings()
-    this.interval = setInterval(() => this.reload(), 10000);
+    this.interval = setInterval(() => this.reload(), RELOAD_INTERVAL);
   }
 
   private fetchSensorReadings() {
