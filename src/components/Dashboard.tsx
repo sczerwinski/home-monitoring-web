@@ -6,15 +6,19 @@ import Api, { Location } from './Api'
 import LoadingProgress from './LoadingProgress'
 import DashboardItem from './DashboardItem'
 
+type DashboardProps = {
+  date: Date
+}
+
 type DashboardState = {
   error?: any,
   isLoaded: boolean,
   locations: Location[]
 }
 
-export default class Dashboard extends React.Component<{}, DashboardState> {
+export default class Dashboard extends React.Component<DashboardProps, DashboardState> {
 
-  constructor(props: {}) {
+  constructor(props: DashboardProps) {
     super(props);
     this.state = {
       error: null,
@@ -89,7 +93,7 @@ export default class Dashboard extends React.Component<{}, DashboardState> {
       <Grid container>
         {locations.map(location => (
           <Grid xs={12} item key={location.id}>
-            <DashboardItem location={location} />
+            <DashboardItem location={location} date={this.props.date} />
           </Grid>
         ))}
       </Grid>

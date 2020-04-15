@@ -4,12 +4,17 @@ import { Toolbar, Box, Container } from '@material-ui/core';
 
 import TopBar from './TopBar';
 
-export default class PageLayout extends React.Component {
+type PageLayoutProps = {
+  onDateChange: (date: Date) => void,
+  children?: React.ReactNode
+}
+
+export default class PageLayout extends React.Component<PageLayoutProps> {
 
   render() {
     return (
       <React.Fragment>
-        <TopBar />
+        <TopBar onDateChange={this.props.onDateChange} />
         <Toolbar />
         <Box my={2}>
           <Container maxWidth="xl">

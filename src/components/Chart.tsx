@@ -14,7 +14,8 @@ const X_AXIS_TICKS = [
 ];
 
 type ChartProps = {
-  location: Location
+  location: Location,
+  date: Date
 }
 
 type ChartState = {
@@ -48,9 +49,10 @@ export default class Chart extends React.Component<ChartProps, ChartState> {
   }
 
   private fetchSensorReadings() {
+    let date = this.props.date;
     Promise.all([
-      Api.fetchReadings(this.props.location.name, SensorType.Temperature, new Date()),
-      Api.fetchReadings(this.props.location.name, SensorType.Humidity, new Date())
+      Api.fetchReadings(this.props.location.name, SensorType.Temperature, date),
+      Api.fetchReadings(this.props.location.name, SensorType.Humidity, date)
     ])
       .then(
         (result) => {
@@ -73,6 +75,12 @@ export default class Chart extends React.Component<ChartProps, ChartState> {
 
   private reload() {
     this.fetchSensorReadings()
+  }
+
+  componentDidUpdate(prevProps: ChartProps) {
+    if (prevProps.date !== this.props.date) {
+      this.reload();
+    }
   }
 
   render() {
@@ -134,6 +142,7 @@ export default class Chart extends React.Component<ChartProps, ChartState> {
           </YAxis>
           <Legend verticalAlign="top" iconType="plainline" height={36} />
           <Line
+              connectNulls
               yAxisId="humidityAxis"
               type="monotone"
               dataKey="humidity"
@@ -142,6 +151,7 @@ export default class Chart extends React.Component<ChartProps, ChartState> {
               strokeWidth={2}
               dot={false} />
           <Line
+              connectNulls
               yAxisId="temperatureAxis"
               type="monotone"
               dataKey="temperature"
@@ -159,13 +169,15 @@ export default class Chart extends React.Component<ChartProps, ChartState> {
     let temperatureMap = new Map<string, number>()
     let humidityMap = new Map<string, number>()
     readings.get(SensorType.Temperature).forEach((reading) => {
-      temperatureMap.set(
-        reading.dateTime.split("T")[1].slice(0, 5),
-        reading.value
-      )
+      if (reading.value !== NaN) {
+        temperatureMap.set(
+          reading.dateTime.split("T")[1].slice(0, 5),
+          reading.value
+        )
+      }
     })
     readings.get(SensorType.Humidity).forEach((reading) => {
-      if (reading.value <= 100 && reading.value >= 0) {
+      if (reading.value <= 100 && reading.value >= 0 && reading.value !== NaN) {
         humidityMap.set(
           reading.dateTime.split("T")[1].slice(0, 5),
           reading.value

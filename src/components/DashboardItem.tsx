@@ -8,7 +8,8 @@ import CurrentReadings from './CurrentReadings';
 import Chart from './Chart';
 
 type DashboardItemProps = {
-  location: Location
+  location: Location,
+  date: Date
 }
 
 export default class DashboardItem extends React.Component<DashboardItemProps> {
@@ -31,7 +32,7 @@ export default class DashboardItem extends React.Component<DashboardItemProps> {
               </Grid>
             </Grid>
             <Grid item lg={10} md={8} xs={12}>
-              <Chart location={this.props.location} />
+              <Chart location={this.props.location} date={this.props.date} />
             </Grid>
           </Grid>
         </Box>
