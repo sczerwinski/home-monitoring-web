@@ -35,7 +35,10 @@ export default class Api {
   }
 
   static fetchReadings(locationName: string, readingType: string, date: Date): Promise<SensorReading[]> {
-    let formattedDate = date.toISOString().split('T')[0];
+    let year = String(date.getFullYear());
+    let month = String(date.getMonth() + 1).padStart(2, '0');
+    let day = String(date.getDate()).padStart(2, '0');
+    let formattedDate = year + "-" + month + "-" + day;
     return fetch(BASE_URL + "/location/" + locationName + "/type/" + readingType + "/readings/" + formattedDate)
       .then(response => response.json())
   }
