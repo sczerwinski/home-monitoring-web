@@ -8,12 +8,7 @@ import TodayIcon from './icons/TodayIcon';
 import MoreIcon from './icons/MoreIcon';
 
 function today(): Date {
-  let date = new Date();
-  date.setHours(0);
-  date.setMinutes(0);
-  date.setSeconds(0);
-  date.setMilliseconds(0);
-  return date;
+  return new Date();
 }
 
 type DateControlsProps = {
@@ -116,10 +111,10 @@ export default class DateControls extends React.Component<DateControlsProps, Dat
   private handleDateNextClick(event: React.MouseEvent<HTMLElement>) {
     let date = new Date(this.state.date);
     date.setDate(date.getDate() + 1);
-    if (date <= new Date()) {
-      this.setState({date: date});
-      this.props.onDateChange(date);
-    }
+    let limit = today();
+    if (date > limit) date = limit;
+    this.setState({date: date});
+    this.props.onDateChange(date);
   }
 
   private handleDateTodayClick(event: React.MouseEvent<HTMLElement>) {
